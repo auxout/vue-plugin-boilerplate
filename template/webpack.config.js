@@ -2,7 +2,7 @@ var path = require('path')
 var webpack = require('webpack')
 
 module.exports = {
-  entry: './src/main.js',
+  entry: './src/main.coffee',
   output: {
     path: path.resolve(__dirname, './dist'),
     publicPath: '/dist/',
@@ -31,6 +31,14 @@ module.exports = {
         loader: 'vue-html'
       },
       {
+        test: /\.coffee$/,
+        loader: 'coffee-loader'
+      },
+      {
+        test: /\.scss$/,
+        loaders: ["style", "css", "sass"]
+      },
+      {
         test: /\.(png|jpg|gif|svg)$/,
         loader: 'url',
         query: {
@@ -39,6 +47,11 @@ module.exports = {
         }
       }
     ]
+  },
+  vue: {
+    loaders: {
+      scss: 'vue-style!css!sass'
+    }
   },
   devServer: {
     historyApiFallback: true,

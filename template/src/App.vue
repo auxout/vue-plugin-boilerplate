@@ -1,6 +1,6 @@
 <template lang='jade'>
   #app
-    h1 {{msg}}
+    h1(v-text="msg")
 </template>
 
 

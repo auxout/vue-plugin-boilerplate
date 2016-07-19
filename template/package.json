@@ -7,7 +7,13 @@
   {{/private}}
   "scripts": {
     "dev": "webpack-dev-server --inline --hot",
-    "build": "cross-env NODE_ENV=production webpack --progress --hide-modules"
+    "build:coffee": "coffee --no-header --compile --output . src/*.coffee",
+    "build:webpack": "cross-env NODE_ENV=production webpack --progress --hide-modules",
+    "build": "run-npm build:*",
+    "test": "karma start --single-run",
+    "preversion": "npm test",
+    "version": "npm run build && git add .",
+    "postversion": "git push && git push --tags"
   },
   "dependencies": {
     "vue": "^1.0.0",
@@ -42,6 +48,7 @@
     "mocha": "^2.5.3",
     "node-sass": "^3.8.0",
     "sass-loader": "^4.0.0",
+    "script-runner": "^0.1.5",
     "url-loader": "^0.5.7",
     "vue-hot-reload-api": "^1.2.0",
     "vue-html-loader": "^1.0.0",
